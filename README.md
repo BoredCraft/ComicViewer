@@ -99,13 +99,13 @@ Replace any images you want to [./img](./img). I do not like them, but I forgot 
 ## How this look
 WARNING NSFW content!
 
-The P-bot will smash you with log in prompt PUNCH [Newgrounds](https://pages.github.com/](https://www.newgrounds.com/portal/view/862755?updated=1667856511).
+The P-bot will smash you with log in prompt PUNCH [Newgrounds](https://www.newgrounds.com/portal/view/862755?updated=1667856511).
 
-No bot to smash you with log in prompt PUNCH but this can be removed either me or other bad persons [Firebase hosting](https://comics-viewer-c433d.web.app/).
+No bot to smash you with log in prompt PUNCH but this can be removed either me or other bad persons [Firebase hosting]( https://comics-viewer-c433d.web.app/ ).
 
 Would not be the end of the world if you mentionate me when you use this composition.
 
 P.S. Not a good NSFW artist, not a good programmer, but a very good meat beater
 
 ## Docs used
-- [Real-time database Firebase](https://firebase.google.com/docs/database/web/start)
+- [Real-time database Firebase]( https://firebase.google.com/docs/database/web/start )
