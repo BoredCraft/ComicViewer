@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./index.js" type="module" defer></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <template id="loading-template">
+        <div class="loading-gif-container" id="loading-gif-container">
+            <div class="frame-info-text">
+                <img class="loading-gif-img" src="./img/loading-gif.gif">
+                <span class="info-text">Loading...</span>
+            </div>
+        </div>
+    </template>
+    <div id="container">
+        <div id="image-count-container">
+            <div class="frame-image-count">
+                <span class="info-text count-img" id="current-img">Loading...</span> / <span id="total-count"
+                    class="info-text count-img">Loading...</span>
+            </div>
+        </div>
+        <div class="current-image-container" id="current-image-container">
+            <div class="button" id="left-button"><span class="button-arrow">&#8592;</span></div>
+            <div id="view-port"></div>
+            <div class="button" id="right-button"><span class="button-arrow">&#8594;</span></div>
+        </div>
+    </div>
+</body>
+
+</html>

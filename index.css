@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --following-pages-container-width: 200px;
+}
+
+body {
+    font-weight: bolder;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+* {
+    margin: 0px;
+}
+
+/*MAIN CONTAINER OF THIS COMIC VIEW. THIS MUST BE MODIFIED IN ORDER TO FIT IN ANY PAGES AS NEEDED*/
+#container {
+    margin: auto;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+/*MAIN CONTAINER OF THIS COMIC VIEW. THIS MUST BE MODIFIED IN ORDER TO FIT IN ANY PAGES AS NEEDED*/
+
+/* FOR LOADING INDICATOR*/
+.loading-gif-container {
+    position: absolute;
+    width: 100%;
+    align-self: center;
+    justify-content: center;
+    display: flex;
+}
+
+.info-text {
+    display: block;
+    text-align: center;
+}
+
+.loading-gif-img {
+    height: 100px;
+    width: 100px;
+}
+
+.frame-info-load {
+    width: 100px;
+    align-self: center;
+    justify-self: center;
+}
+
+/* FOR LOADING INDICATOR*/
+
+/* BUTTONS*/
+.button {
+    background: linear-gradient(rgb(173, 124, 96), rgb(54, 41, 36));
+    height: 100%;
+    width: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.button-arrow {
+    display: flex;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    border-style: solid;
+    border-width: 2px;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.button:hover {
+    background: linear-gradient(rgb(54, 41, 36), rgb(173, 124, 96));
+}
+
+/* BUTTONS*/
+
+.current-image-container {
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+/* IMAGE DISPLAY*/
+#view-img {
+    width: 100%;
+}
+
+#img-holder {
+    background-color: rgb(0, 0, 0);
+}
+
+#view-port {
+    height: 100%;
+    width: calc(100% - 150px);
+    overflow-y: hidden;
+}
+
+/* IMAGE DISPLAY*/
+
+/* IMAGE DATA INFO*/
+#image-count-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    position: absolute;
+    top: 0px;
+    height: 50px;
+    width: 100%;
+    background: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0));
+}
+
+.count-img {
+    display: inline
+}
+
+.frame-image-count {
+    text-align: center;
+}
+
+.image-count-container {
+    display: flex;
+}
+
+/* IMAGE DATA INFO*/
+@media(max-width:1000px) {
+    .current-image-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: calc(100vh - 80px) 80px;
+        grid-template-areas:
+            "main main"
+            "left right";
+    }
+
+    .button {
+        width: auto;
+        height: auto;
+    }
+
+    #view-port {
+        position: relative;
+        width: 100%;
+        grid-area: main;
+    }
+
+    #left-button {
+        grid-area: left;
+    }
+
+    #right-button {
+        grid-area: right;
+    }
+}
