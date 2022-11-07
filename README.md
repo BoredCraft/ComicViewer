@@ -107,5 +107,12 @@ Would not be the end of the world if you mentionate me when you use this composi
 
 P.S. Not a good NSFW artist, not a good programmer, but a very good meat beater
 
+## Tested on
+- Brave Android (Pass)
+- Firefox Desktop (Pass)
+- Chrome Desktop (Failed)
+- Duck Duck Go Android(Failed)
+
+
 ## Docs used
 - [Real-time database Firebase]( https://firebase.google.com/docs/database/web/start )
