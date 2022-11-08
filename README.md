@@ -19,7 +19,7 @@ This composition can be integrated to your pages if you make some changes in lay
 <details>
 <summary>Css configuration</summary>
 
-To change the size of comic view, in the css file [./index.css](./index.css)
+To change the size of comic view, in the css file [./comicViewPage.css](./comicViewPage.css)
 
 ```css
 /*MAIN CONTAINER OF THIS COMIC VIEW. THIS MUST BE MODIFIED IN ORDER TO FIT IN ANY PAGES AS NEEDED*/
@@ -86,7 +86,7 @@ On the server side, my structure was:
 - *const data = snapshot.val();* where data is the JSON object from Firestorm Real-time database
 - *data.URL* where URL is a property of data JSON object representing a string with all links of the chosen comic, comma separated (link1,link2,link3,...).
 
-The important thing here is the function **fetch()** which use **data** variable (in my case the property URL from data JSONobject stored the links) to store and send further an array with the links of the images/comic pages to the [./modules/imgURLHandler.js](./modules/imgURLHandler.js) using a callback function , which in the [./index.js](./index.js) is **init(data)** function to handle all functionality of showing images.
+The important thing here is the function **fetch()** which use **data** variable (in my case the property URL from data JSONobject stored the links) to store and send further an array with the links of the images/comic pages to the [./modules/imgURLHandler.js](./modules/imgURLHandler.js) using a callback function , which in the [./comicViewPage.js](./comicViewPage.js) is **init(data)** function to handle all functionality of showing images.
 
 For short you have to supply to the callback function an array representing the links of your images, using what server you want.
 
