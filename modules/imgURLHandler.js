@@ -100,13 +100,17 @@ function putImage(index, callIfLoad, callIfError) {
         calculateImagePosition();
         calculateMovements();
         currentImg.html((imgIndexSelected + 1));
-        callIfLoad?.();
+        if(callIfLoad!=null){
+            callIfLoad();
+        }
         toogleLoading(false);
     }).on("error", (e) => {
         jQuery(e.currentTarget).off("load");
         links[index] = noImg;
         currentPage.attr("src", links[index]);
-        callIfError?.();
+        if(callIfError!=null){
+            callIfError();
+        }
         toogleLoading(false);
     });
 
