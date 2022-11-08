@@ -107,20 +107,20 @@ Would not be the end of the world if you mentionate me when you use this composi
 
 ## Page navigation
 
-# Mouse
+### Mouse
 
-- Left click on the left and right elements to change current image
-- Move the mouse up and down to see all the image
+- Left click on the left and right elements to change current image.
+- Move the mouse up and down to see all the image.
 
-# Keyboard
+### Keyboard
 
-- Left arrow to get previous image
-- Right arrow to get next image
-- Up arrow tand down arrow have same behavoir with mouse moving to see all the image, instead of scrolling
+- Left arrow to get previous image.
+- Right arrow to get next image.
+- Up arrow tand down arrow have same behavoir with mouse moving to see all the image, instead of scrolling.
 
-The keyboard navigation feature is for some,... very fast people who have too much hand tremors
+The keyboard navigation feature is for some,... very fast people who have too much hand tremors.
 
-Only for desktop devices, for mobile devices scrolling instead
+Only for desktop devices, for mobile devices scrolling instead.
 
 
 P.S. Not a good NSFW artist, not a good programmer, but a very good meat beater
