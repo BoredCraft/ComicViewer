@@ -99,7 +99,7 @@ Replace any images you want to [./img](./img). I do not like them, but I forgot 
 ## How this look
 WARNING NSFW content!
 
-The P-bot will smash you with log in prompt PUNCH [Newgrounds](https://www.newgrounds.com/portal/view/862755?updated=1667856511).
+The M-bot will smash you with log in prompt PUNCH [Newgrounds](https://www.newgrounds.com/portal/view/862755?updated=1667856511).
 
 No bot to smash you with log in prompt PUNCH but this can be removed either me or other bad persons [Firebase hosting]( https://comics-viewer-c433d.web.app/ ).
 
