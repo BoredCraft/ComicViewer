@@ -83,7 +83,7 @@ body {
 .current-image-container {
     display: flex;
     background-color: rgb(0, 0, 0);
-    height: 100%;
+    height: calc(100% - 50px);
     width: 100%;
     position: relative;
 }
@@ -111,11 +111,11 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 10;
-    position: absolute;
+    position: relative;
     top: 0px;
     height: 50px;
     width: 100%;
-    background: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0));
+   background-color: rgb(0, 0, 0);
 }
 
 .count-img {
@@ -135,7 +135,7 @@ body {
     .current-image-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: calc(100vh - 80px) 80px;
+        grid-template-rows: calc(100% - 80px) 80px;
         grid-template-areas:
             "main main"
             "left right";

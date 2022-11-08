@@ -1,7 +1,8 @@
 import 'https://code.jquery.com/jquery-3.6.1.min.js';
 //HTML ELEMENTS
 const loadingTemplate = document.querySelector("#loading-template");
-const container = jQuery("#current-image-container");
+const currentImageContainer = jQuery("#current-image-container");
+const container = jQuery("#container");
 const viewPort = jQuery("#view-port");
 const leftButton = jQuery("#left-button");
 const rightButton = jQuery("#right-button");
@@ -25,7 +26,9 @@ let links = [];
 let totalCount = 0;
 let regexForCheckPlatform = /android|iphone|kindle|ipad/i;
 let isMobileDevice = regexForCheckPlatform.test(navigator.userAgent);
+let distanceBetweenViewPortAndScreen = 0;
 //IMAGES HANDLE VALUES
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function calculateImagePosition() {
     if (differnceValueH < 0) {
         viewPort.css("align-items", "center");
@@ -36,6 +39,7 @@ function calculateImagePosition() {
         viewPort.css("display", "block");
     }
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function calculateMovements() {
     if (currentPage != null) {
         if (differnceValueH < 0) {
@@ -48,18 +52,23 @@ function calculateMovements() {
         }
     }
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function updateMovementValues() {
+    distanceBetweenViewPortAndScreen=viewPort[0].getBoundingClientRect().top;
+
     if (currentPage != null) {
         viewPortH = viewPort.css("height");
         imgH = currentPage.css("height");
         differnceValueH = Math.round(imgH.substring(0, imgH.length - 2) - viewPortH.substring(0, viewPortH.length - 2));
         stepLengthMoveImageOnKey = (viewPortH.substring(0, viewPortH.length - 2) / imgH.substring(0, imgH.length - 2)) / 2;
-        console.log(`viewPortH:${viewPortH} imgH:${imgH} differnceValueH:${differnceValueH} stepLengthMoveImageOnKey:${stepLengthMoveImageOnKey}`);
+        //console.log(`viewPortH:${viewPortH} imgH:${imgH} differnceValueH:${differnceValueH} stepLengthMoveImageOnKey:${stepLengthMoveImageOnKey} distanceBetweenViewPortAndScreen:${distanceBetweenViewPortAndScreen}`);
     }
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function toogleLoading(way = true) {
     jQuery("#loading-gif-container").css("display", (way) ? "flex" : "none");
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function toLeft() {
     imgIndexSelected--;
     if (imgIndexSelected < 0) {
@@ -70,6 +79,7 @@ function toLeft() {
     //console.log("LEFT " + imgIndexSelected);
 
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function toRight() {
     imgIndexSelected++;
     if (imgIndexSelected > totalCount - 1) {
@@ -79,50 +89,55 @@ function toRight() {
     }
     //console.log("RIGHT " + imgIndexSelected);
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function putImage(index, callIfLoad, callIfError) {
     toogleLoading(true);
     viewPort.html(`<img  id="view-img" src="${links[index]}">`);
     currentPage = jQuery("#view-img");
     //console.log(currentPage);
+
     currentPage.on("load", (e) => {
+        console.log(`PAGE:${index} LOADED ${links[index]}`);
         if (!isMobileDevice) {
             currentPage.on("mousemove", (e) => {
-                yRation = e.clientY / viewPortH.substring(0, viewPortH.length - 2);
-                // console.log(`e.clientY:${e.clientY}`);
+                yRation = (e.clientY - distanceBetweenViewPortAndScreen) / viewPortH.substring(0, viewPortH.length - 2);
+                //console.log(`e.clientY:${e.clientY} distanceBetweenViewPortAndScreen:${distanceBetweenViewPortAndScreen}`);
                 //console.log(`e.screenY:${e.screenY}`);
                 calculateMovements();
             });
             jQuery(e.currentTarget).off("error");
-            console.log(links[index]);
             currentPage.css("transform", `translate(0px,0px)`)
         }
         updateMovementValues();
         calculateImagePosition();
         calculateMovements();
         currentImg.html((imgIndexSelected + 1));
-        if(callIfLoad!=null){
+        if (callIfLoad != null) {
             callIfLoad();
         }
         toogleLoading(false);
     }).on("error", (e) => {
+        console.log(`PAGE:${index} ERROR ${links[index]}`);
         jQuery(e.currentTarget).off("load");
         links[index] = noImg;
         currentPage.attr("src", links[index]);
-        if(callIfError!=null){
+        if (callIfError != null) {
             callIfError();
         }
         toogleLoading(false);
     });
-
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export function putLoadingIndicator() {
-    container.append(loadingTemplate.content.cloneNode(true));
+    currentImageContainer.append(loadingTemplate.content.cloneNode(true));
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 export function init(data) {
     links = data;
     totalCount = links.length;
     console.log(links);
     totalCountHtmlElement.html(totalCount);
+    document.onscroll=updateMovementValues;
     putImage(imgIndexSelected, () => {
         leftButton.on("click", (e) => { toLeft(); });
         rightButton.on("click", (e) => { toRight(); });
@@ -162,5 +177,5 @@ export function init(data) {
         totalCountHtmlElement.html("ERROR LOAD");
         alert("The server refuse to process.Causes:\nToo many requests from same host.\nImage not found.\nForbidden image request.\nOther shit.");
     })
-
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////

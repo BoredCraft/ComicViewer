@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./index.js" type="module" defer></script>
-    <link rel="stylesheet" href="index.css">
+    <script src="./comicViewPage.js" type="module" defer></script>
+    <link rel="stylesheet" href="comicViewPage.css">
 </head>
 
 <body>
-    <template id="loading-template">
-        <div class="loading-gif-container" id="loading-gif-container">
-            <div class="frame-info-text">
-                <img class="loading-gif-img" src="./img/loading-gif.gif">
-                <span class="info-text">Loading...</span>
-            </div>
-        </div>
-    </template>
     <div id="container">
+        <template id="loading-template">
+            <div class="loading-gif-container" id="loading-gif-container">
+                <div class="frame-info-text">
+                    <img class="loading-gif-img" src="./img/loading-gif.gif">
+                    <span class="info-text">Loading...</span>
+                </div>
+            </div>
+        </template>
         <div id="image-count-container">
             <div class="frame-image-count">
                 <span class="info-text count-img" id="current-img">Loading...</span> / <span id="total-count"
