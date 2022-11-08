@@ -128,8 +128,8 @@ P.S. Not a good NSFW artist, not a good programmer, but a very good meat beater
 ## Tested on
 - Brave Android (Pass)
 - Firefox Desktop (Pass)
-- Chrome Desktop (Failed)
-- Duck Duck Go Android(Failed)
+- Chrome Desktop (~~Failed~~Pass)
+- Duck Duck Go Android(~~Failed~~Pass)
 
 
 ## Docs used
