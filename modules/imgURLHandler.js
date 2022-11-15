@@ -98,6 +98,9 @@ function putImage(index, callIfLoad, callIfError) {
 
     currentPage.on("load", (e) => {
         console.log(`PAGE:${index} LOADED ${links[index]}`);
+        updateMovementValues();
+        calculateImagePosition();
+        calculateMovements();
         if (!isMobileDevice) {
             currentPage.on("mousemove", (e) => {
                 yRation = (e.clientY - distanceBetweenViewPortAndScreen) / viewPortH.substring(0, viewPortH.length - 2);
@@ -108,9 +111,7 @@ function putImage(index, callIfLoad, callIfError) {
             jQuery(e.currentTarget).off("error");
             currentPage.css("transform", `translate(0px,0px)`)
         }
-        updateMovementValues();
-        calculateImagePosition();
-        calculateMovements();
+        
         currentImg.html((imgIndexSelected + 1));
         if (callIfLoad != null) {
             callIfLoad();
