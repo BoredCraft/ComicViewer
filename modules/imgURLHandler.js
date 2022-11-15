@@ -150,18 +150,22 @@ export function init(data) {
             jQuery(window).on("keydown", (e) => {
                 //console.log(e.key);
                 switch (e.key) {
-                    case "ArrowLeft":
+                    case "4":
+                    case "a":
                         toLeft();
                         break;
-                    case "ArrowRight":
+                    case "d":
+                    case "6":
                         toRight();
                         break;
-                    case "ArrowUp":
+                    case "8":
+                    case "w":
                         yRation -= stepLengthMoveImageOnKey;
                         yRation = yRation < 0 ? 0 : yRation;
                         //console.log("UP " + yRation);
                         break;
-                    case "ArrowDown":
+                    case "2":
+                    case "s":
                         yRation += stepLengthMoveImageOnKey;
                         yRation = yRation > 1 ? 1 : yRation;
                         //console.log("DOWN " + yRation);
