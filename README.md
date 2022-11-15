@@ -114,9 +114,11 @@ Would not be the end of the world if you mentionate me when you use this composi
 
 ### Keyboard
 
-- Left arrow to get previous image.
-- Right arrow to get next image.
-- Up arrow tand down arrow have same behavoir with mouse moving to see all the image, instead of scrolling.
+- **Key a** or **numpad key 4** to get previous image.
+- **Key d** or **numpad key 6** to get next image.
+- **Key w** or **numpad key 8** and **Key s** or **numpad key 2** have same behavoir with mouse moving to see all the image, instead of scrolling.
+
+*I don't know if you are left or right handed* so I had to make more accessebility for both cases :)*
 
 The keyboard navigation feature is for some,... very fast people who have too much hand tremors.
 
