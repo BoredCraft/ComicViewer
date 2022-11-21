@@ -8,6 +8,7 @@ const leftButton = jQuery("#left-button");
 const rightButton = jQuery("#right-button");
 const currentImg = jQuery("#current-img");
 const totalCountHtmlElement = jQuery("#total-count");
+const message = jQuery("#message");
 let currentPage = null;
 //HTML ELEMENTS
 
@@ -28,6 +29,11 @@ let regexForCheckPlatform = /android|iphone|kindle|ipad/i;
 let isMobileDevice = regexForCheckPlatform.test(navigator.userAgent);
 let distanceBetweenViewPortAndScreen = 0;
 //IMAGES HANDLE VALUES
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function setMessage(messageText = null) {
+    (messageText != null) ? message.html(messageText) : message.html("") ;
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function calculateImagePosition() {
     if (differnceValueH < 0) {
@@ -54,7 +60,7 @@ function calculateMovements() {
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function updateMovementValues() {
-    distanceBetweenViewPortAndScreen=viewPort[0].getBoundingClientRect().top;
+    distanceBetweenViewPortAndScreen = viewPort[0].getBoundingClientRect().top;
 
     if (currentPage != null) {
         viewPortH = viewPort.css("height");
@@ -74,7 +80,7 @@ function toLeft() {
     if (imgIndexSelected < 0) {
         imgIndexSelected = 0
     } else {
-        putImage(imgIndexSelected, null, () => { currentImg.html(`ERROR LOAD PAGE ${imgIndexSelected}`); })
+        putImage(imgIndexSelected, null, () => { setMessage(`ERROR LOAD PAGE ${imgIndexSelected}`); })
     }
     //console.log("LEFT " + imgIndexSelected);
 
@@ -85,9 +91,30 @@ function toRight() {
     if (imgIndexSelected > totalCount - 1) {
         imgIndexSelected = totalCount - 1
     } else {
-        putImage(imgIndexSelected, null, () => { currentImg.html(`ERROR LOAD PAGE ${imgIndexSelected}`); })
+        putImage(imgIndexSelected, () => { setMessage(); }, () => { setMessage(`ERROR LOAD PAGE ${imgIndexSelected}`); })
     }
     //console.log("RIGHT " + imgIndexSelected);
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function toImageFromNrPage(text) {
+    try {
+        let nrFromText = parseInt(text) - 1
+        if (isNaN(nrFromText)) {
+            throw new Error();
+        }
+        if (nrFromText < 0) {
+            imgIndexSelected = 0;
+        } else if (nrFromText >= totalCount) {
+            imgIndexSelected = totalCount - 1;
+        } else {
+            imgIndexSelected = nrFromText;
+        }
+    } catch (exc) {
+        console.error(exc);
+    }
+    finally {
+        putImage(imgIndexSelected, () => { setMessage(); }, () => { setMessage(`ERROR LOAD PAGE ${imgIndexSelected + 1}`); })
+    }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function putImage(index, callIfLoad, callIfError) {
@@ -95,8 +122,9 @@ function putImage(index, callIfLoad, callIfError) {
     viewPort.html(`<img  id="view-img" src="${links[index]}">`);
     currentPage = jQuery("#view-img");
     //console.log(currentPage);
-
+    currentImg[0].value = (imgIndexSelected + 1);
     currentPage.on("load", (e) => {
+        jQuery(e.currentTarget).off("error");
         console.log(`PAGE:${index} LOADED ${links[index]}`);
         updateMovementValues();
         calculateImagePosition();
@@ -108,11 +136,8 @@ function putImage(index, callIfLoad, callIfError) {
                 //console.log(`e.screenY:${e.screenY}`);
                 calculateMovements();
             });
-            jQuery(e.currentTarget).off("error");
             currentPage.css("transform", `translate(0px,0px)`)
         }
-        
-        currentImg.html((imgIndexSelected + 1));
         if (callIfLoad != null) {
             callIfLoad();
         }
@@ -138,7 +163,7 @@ export function init(data) {
     totalCount = links.length;
     console.log(links);
     totalCountHtmlElement.html(totalCount);
-    document.onscroll=updateMovementValues;
+    document.onscroll = updateMovementValues;
     putImage(imgIndexSelected, () => {
         leftButton.on("click", (e) => { toLeft(); });
         rightButton.on("click", (e) => { toRight(); });
@@ -147,26 +172,33 @@ export function init(data) {
             calculateMovements();
             calculateImagePosition();
         })
+        currentImg.on("blur", (e) => {
+            toImageFromNrPage(currentImg[0].value);
+        }).on("keydown", (e) => {
+            if (e.code == "Enter") {
+                toImageFromNrPage(currentImg[0].value);
+            }
+        });
         if (!isMobileDevice) {
             jQuery(window).on("keydown", (e) => {
-                //console.log(e.key);
-                switch (e.key) {
-                    case "4":
-                    case "a":
+                //  console.log(e.key + " " + e.code);
+                switch (e.code) {
+                    case "Numpad4":
+                    case "KeyA":
                         toLeft();
                         break;
-                    case "d":
-                    case "6":
-                        toRight();
+                    case "KeyD":
+                    case "Numpad6":
+                        toRight(); 4
                         break;
-                    case "8":
-                    case "w":
+                    case "Numpad8":
+                    case "KeyW":
                         yRation -= stepLengthMoveImageOnKey;
                         yRation = yRation < 0 ? 0 : yRation;
                         //console.log("UP " + yRation);
                         break;
-                    case "2":
-                    case "s":
+                    case "Numpad2":
+                    case "KeyS":
                         yRation += stepLengthMoveImageOnKey;
                         yRation = yRation > 1 ? 1 : yRation;
                         //console.log("DOWN " + yRation);
@@ -178,7 +210,8 @@ export function init(data) {
             viewPort.css("overflow-y", "auto");
         }
     }, () => {
-        currentImg.html("ERROR LOAD");
+        currentImg.remove();
+        setMessage("ERROR LOAD");
         totalCountHtmlElement.html("ERROR LOAD");
         alert("The server refuse to process.Causes:\nToo many requests from same host.\nImage not found.\nForbidden image request.\nOther shit.");
     })

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Comic Page</title>
     <script src="./comicViewPage.js" type="module" defer></script>
     <link rel="stylesheet" href="comicViewPage.css">
 </head>
@@ -22,8 +22,8 @@
         </template>
         <div id="image-count-container">
             <div class="frame-image-count">
-                <span class="info-text count-img" id="current-img">Loading...</span> / <span id="total-count"
-                    class="info-text count-img">Loading...</span>
+                <span id="message" class="count-img"></span><input type="text" class="count-img" id="current-img"> /
+                <span id="total-count" class="count-img">Loading...</span>
             </div>
         </div>
         <div class="current-image-container" id="current-image-container">
