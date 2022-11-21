@@ -29,10 +29,9 @@ let regexForCheckPlatform = /android|iphone|kindle|ipad/i;
 let isMobileDevice = regexForCheckPlatform.test(navigator.userAgent);
 let distanceBetweenViewPortAndScreen = 0;
 //IMAGES HANDLE VALUES
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function setMessage(messageText = null) {
-    (messageText != null) ? message.html(messageText) : message.html("") ;
+    (messageText != null) ? message.html(messageText) : message.html("");
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function calculateImagePosition() {
@@ -178,6 +177,8 @@ export function init(data) {
             if (e.code == "Enter") {
                 toImageFromNrPage(currentImg[0].value);
             }
+        }).on("focus", () => {
+            currentImg[0].value = "";
         });
         if (!isMobileDevice) {
             jQuery(window).on("keydown", (e) => {
