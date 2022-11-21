@@ -124,6 +124,12 @@ The keyboard navigation feature is for some,... very fast people who have too mu
 
 Only for desktop devices, for mobile devices scrolling instead.
 
+### Changing current reached page (Value from the left side of slash "/" of the top of the webpage)
+If you know what page you reach, you can type the number of that page.
+
+Either press Enter or click somewhere to load another image.
+
+On mobile, only when you tap somewhere in the webpage , the image will load, otherwise will not.
 
 P.S. Not a good NSFW artist, not a good programmer, but a very good meat beater
 
